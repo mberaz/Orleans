@@ -9,6 +9,8 @@ IHostBuilder builder = Host.CreateDefaultBuilder(args)
     .UseOrleans(silo =>
     {
         silo.UseLocalhostClustering()
+            .AddMemoryGrainStorage("shopping-cart")
+            .AddStartupTask<StartupTask>()
             .ConfigureLogging(logging => logging.AddConsole());
     })
     .UseConsoleLifetime();
